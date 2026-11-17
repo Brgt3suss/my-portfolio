@@ -1,7 +1,11 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-app.use(cors());
+
+const PORT = process.env.PORT || 3000;
+const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN || 'http://localhost:8080';
+
+app.use(cors({ origin: ALLOWED_ORIGIN }));
 
 let visitors = 0;
 
@@ -10,4 +14,4 @@ app.get('/visits', (req, res) => {
   res.json({ visitors });
 });
 
-app.listen(3000, () => console.log('API running on port 3000'));
+app.listen(PORT, () => console.log(`API running on port ${PORT}`));
