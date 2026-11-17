@@ -7,15 +7,25 @@ services:
       - api
     networks:
       - portfolio-net
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 128M
 
   api:
     build: ./api
-    env_file:        
-      - .env   
+    env_file:
+      - .env
     ports:
       - "3000:3000"
     networks:
       - portfolio-net
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 256M
 
 networks:
   portfolio-net:
